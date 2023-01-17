@@ -1,0 +1,19 @@
+/* .fondo-bici{
+    background:url(./assets/img/wallpaper01.jpg)
+} */
+.fondo-bici{
+    background: #141E30;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.card:hover{
+    background: linear-gradient(to bottom, #c8c8c8, #ffffff); 
+    border: 1px solid lightblue;
+    box-shadow:1px 1px 10px 5px lightblue;
+     
+}
+.fondo-02{
+    background: url(./assets/img/wallpaper02.jpg);
+    height:5rem;
+}
