@@ -2,6 +2,12 @@ let carrito= JSON.parse(localStorage.getItem("carrito"))||[];
 
 let searchbike= document.getElementById("searchbike");
 
+const shopcontent = document.getElementById("shopcontent");
+const vercarrito = document.getElementById("vercarrito")
+const modalcontainer=document.getElementById("modalbody")
+const cantcarrito= document.getElementById("cantcarrito")
+let selectbrand = document.getElementById("selectbrand")
+let btnborrarselect = document.getElementById("borrarselect")
 
 function filtrarbike(filtro) {
   let filtrado = bike.filter((bici) => {
@@ -10,16 +16,11 @@ function filtrarbike(filtro) {
   return filtrado;
 }
 
-const shopcontent = document.getElementById("shopcontent");
-const vercarrito = document.getElementById("vercarrito")
-const modalcontainer=document.getElementById("modalbody")
-const cantcarrito= document.getElementById("cantcarrito")
-
 function crearhtml(bike){
   shopcontent.innerHTML=``
   bike.forEach(product => {
       content= document.createElement("div");
-      content.className="card d-inline-block m-4"
+      content.className="card d-inline-block mt-2 me-2"
       content.innerHTML=`
                               <img class="card-img-top" src="${product.img}">    
                               <h4 class="card-title bg-danger">${product.brand}</h3>
@@ -75,13 +76,10 @@ function crearhtml(bike){
 }
 crearhtml(bike)
 
-let selectbrand = document.getElementById("selectbrand")
 searchbike.addEventListener("input",()=>{
   let filtro= filtrarbike(searchbike.value)
   crearhtml(filtro)
 });
-
-btnborrarselect = document.getElementById("borrarselect")
 
 btnborrarselect.addEventListener("click",()=>{
   crearhtml(bike)
@@ -90,13 +88,47 @@ btnborrarselect.addEventListener("click",()=>{
 bici=[]
 for (let i = 0; i < bike.length; i++) {
     const element = bike[i];
-    bici.push(element.brand)
-    //console.log(element);  
+    bici.push(element.brand)  
 }
 const filtradobici = bici.filter((valor, indice) => {
     return bici.indexOf(valor) === indice;
   }
 );
+// -----------------------------
+const filtromarca = document.getElementById("filtromarca")
+
+const filtrobrands = bike.map((el)=>el.brand);
+
+const filtradobicis = filtrobrands.filter((valor, indice) => {
+  return bici.indexOf(valor) === indice;
+});
+
+filtradobicis.forEach(el => {
+  let li= document.createElement("li")
+  li.className= el
+  li.innerText=el
+  filtromarca.append(li)
+});
+
+function filtrarpormarca(filtro) {
+  let filtrado= bike.filter((cleta)=>{
+  return cleta.brand.includes(filtro);
+})
+  return filtrado
+}
+
+filtrarpormarca()
+
+filtromarca.addEventListener("click",(e)=>{
+  let buscar =e.target.className;
+  let filtro= filtrarpormarca(buscar)
+  crearhtml(filtro)
+})
+
+// --------------------------------
+
+
+
 function selectbike(filtro) {
   let filtrado = bike.filter((bici) => {
     return bici.brand.includes(filtro);
