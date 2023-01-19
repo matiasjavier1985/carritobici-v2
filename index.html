@@ -70,7 +70,7 @@
       </div>
   </section>
   <section>
-      <div class="container-fluid mb-1">
+      <div class="container-fluid mb-1 shadow">
           <div class="row">
               <div class="col d-flex">
                 <p><strong>Filtrar por: </strong></p>
@@ -88,20 +88,29 @@
   <section>
       <div class="container-fluid text-center fondo-bici"> 
         <div class="row">
-          <div class=" col col-md-2 d-none pr-0 d-md-block visible-when-content-ready">
-             <p>Por marca:</p>
-              <ul class="" id="filtromarca">
-                
+            <div class="col col-md-2 d-none pr-0 d-md-block visible-when-content-ready shadow">
+             <p class="fs-5 text-start">Por marca:</p>
+              <ul class="text-start" id="filtromarca">               
               </ul>
-          </div>
-          </div>     
-            <div class="col"> 
+              <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 Filtrar por:⬆️⬇️
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" id="preciomayormenor">Precio Mayor a Menor</a></li>
+                  <li><a class="dropdown-item" id="preciomenormayor">Precio Menor a Mayor</a></li>
+                  <li><a class="dropdown-item" id="a-z">Marca: A-Z</a></li>
+                  <li><a class="dropdown-item" id="z-a">Marca: Z-A</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col fondo-bici"> 
                  <div id="shopcontent"></div>
             </div>
         </div>
       </div>  
-  </section>
-  
+  </section> 
   <footer class=" text-center text-lg-start bg-light text-muted">
       <div class="text-center">
           <a aria-label="Volver arriba" href="#"style="text-decoration:none;">

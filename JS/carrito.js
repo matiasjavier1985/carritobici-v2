@@ -1,4 +1,7 @@
 
+// ---------VARIABLES------------
+const btnfinalizar= document.getElementById("btnfinalizarcompra")
+// ----------FUNCIONES-----------
 const pintarCarrito= ()=>{
     modalbody.innerHTML=""
     carrito.forEach((product)=>{
@@ -50,8 +53,6 @@ const pintarCarrito= ()=>{
     modalbody.append(totalbuying)
   
 };
-vercarrito.addEventListener("click",pintarCarrito)
-
 const eliminarproducto=()=>{
   const foundID = carrito.find((element)=> element.id);
   carrito=carrito.filter((carritoID)=>{
@@ -85,14 +86,14 @@ const amountcarrito=()=>{
   localStorage.setItem("carritolength",JSON.stringify(carritolength));
   cantcarrito.innerText= localStorage.getItem("carritolength")
 }
-
 const totalgastado=()=>{
   const total = carrito.reduce((acc,totalprecio) => acc + totalprecio.price * totalprecio.amount,0); 
   const moneygastado= total
   localStorage.setItem("moneygastado",JSON.stringify(moneygastado))
   totalmoney.innerText = `$ ${localStorage.getItem("moneygastado")}`
 }
-const btnfinalizar= document.getElementById("btnfinalizarcompra")
+// ---Eventos---------
+vercarrito.addEventListener("click",pintarCarrito)
 btnfinalizar.addEventListener("click",()=>{
   Swal.fire({
     title: 'BIKESHOP',

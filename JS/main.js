@@ -1,31 +1,27 @@
 let carrito= JSON.parse(localStorage.getItem("carrito"))||[];
-
 let searchbike= document.getElementById("searchbike");
-
 const shopcontent = document.getElementById("shopcontent");
 const vercarrito = document.getElementById("vercarrito")
 const modalcontainer=document.getElementById("modalbody")
 const cantcarrito= document.getElementById("cantcarrito")
 let selectbrand = document.getElementById("selectbrand")
 let btnborrarselect = document.getElementById("borrarselect")
-
-function filtrarbike(filtro) {
-  let filtrado = bike.filter((bici) => {
-    return bici.brand.includes(filtro.toUpperCase());
-  });
-  return filtrado;
-}
+const preciomayormenor= document.getElementById("preciomayormenor")
+const preciomenormayor= document.getElementById("preciomenormayor")
+const az= document.getElementById("a-z")
+const za= document.getElementById("z-a")
 
 function crearhtml(bike){
   shopcontent.innerHTML=``
   bike.forEach(product => {
+      const {img,brand,model,price}=product
       content= document.createElement("div");
       content.className="card d-inline-block mt-2 me-2"
       content.innerHTML=`
-                              <img class="card-img-top" src="${product.img}">    
-                              <h4 class="card-title bg-danger">${product.brand}</h3>
-                              <h6 class ="card-text">${product.model}</h5>
-                              <p class="card-text fs-5 text-success"><strong>$ ${product.price}</strong></p>
+                              <img class="card-img-top" src="${img}">    
+                              <h4 class="card-title bg-danger">${brand}</h3>
+                              <h6 class ="card-text">${model}</h5>
+                              <p class="card-text fs-5 text-success"><strong>$ ${price}</strong></p>
                               `
       let comprar = document.createElement("div");
       comprar.innerText="AGREGAR CARRITO";
@@ -44,13 +40,11 @@ function crearhtml(bike){
         toast.addEventListener('mouseenter', Swal.stopTimer)
         toast.addEventListener('mouseleave', Swal.resumeTimer)
       }
-    })
-    
+    }) 
     Toast.fire({
       icon: 'success',
       title: 'Producto agregado'
     })
-
       const repeat = carrito.some((repeatproduct)=> repeatproduct.id === product.id);
         if (repeat){
           carrito.map((prod)=>{
@@ -59,14 +53,8 @@ function crearhtml(bike){
             }
           });
         }else{
-        carrito.push({
-          id:product.id,
-          brand:product.brand,
-          model:product.model,
-          price:product.price,
-          amount: product.amount,
-          img:product.img        
-        });    
+        const{id,brand,model,price,amount,img}= product
+        carrito.push({id:id,brand:brand,model:model,price:price,amount:amount,img:img});    
       }
       totalgastado() 
       guardarLS()
@@ -76,15 +64,99 @@ function crearhtml(bike){
 }
 crearhtml(bike)
 
+// -------filtrar por:--------------------
+
+let precios = bike.filter((precio)=>precio.price)
+let letras = bike.filter((letra)=>letra.brand)
+function filtrarbike(filtro) {
+  let filtrado = bike.filter((bici) => {
+    return bici.brand.includes(filtro.toUpperCase());
+  });
+  return filtrado;
+}
+function preciomayor() {
+  precios.sort((a,b)=>{
+    if (a.price==b.price){
+       return 0
+    }if(a.price<b.price){
+    return 1;
+    }return -1;
+    })
+  return precios
+}
+function preciomenor() {
+    precios.sort((a,b)=>{
+      if (a.price==b.price){
+         return 0
+      }if(a.price>b.price){
+      return 1;
+      }return -1;
+      })
+    return precios
+}
+function ayz() {
+  letras.sort((a,b)=>{
+    if (a.brand==b.brand){
+        return 0
+    }if(a.brand>b.brand){
+    return 1;
+    }return -1;
+    })
+  return letras
+}
+function zya() {
+  letras.sort((a,b)=>{
+    if (a.brand==b.brand){
+        return 0
+    }if(a.brand<b.brand){
+    return 1;
+    }return -1;
+    })
+  return letras
+}
+
 searchbike.addEventListener("input",()=>{
   let filtro= filtrarbike(searchbike.value)
   crearhtml(filtro)
 });
-
 btnborrarselect.addEventListener("click",()=>{
   crearhtml(bike)
 })
+preciomayormenor.addEventListener("click",()=>{
+  filtro = preciomayor(preciomayormenor)
+  crearhtml(filtro)
+})
+preciomenormayor.addEventListener("click",()=>{
+    filtro = preciomenor(preciomenormayor)
+    crearhtml(filtro)
+})
+az.addEventListener("click",()=>{
+  filtro = ayz(az)
+  crearhtml(filtro)
+})
+za.addEventListener("click",()=>{
+  filtro = zya(za)
+  crearhtml(filtro)
+})
 
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+//-----------FIN precio mayor
 bici=[]
 for (let i = 0; i < bike.length; i++) {
     const element = bike[i];
@@ -94,9 +166,8 @@ const filtradobici = bici.filter((valor, indice) => {
     return bici.indexOf(valor) === indice;
   }
 );
-// -----------------------------
+// ------------------------------------------------------
 const filtromarca = document.getElementById("filtromarca")
-
 const filtrobrands = bike.map((el)=>el.brand);
 
 const filtradobicis = filtrobrands.filter((valor, indice) => {
@@ -105,8 +176,10 @@ const filtradobicis = filtrobrands.filter((valor, indice) => {
 
 filtradobicis.forEach(el => {
   let li= document.createElement("li")
-  li.className= el
-  li.innerText=el
+  li.setAttribute("id", el);
+  li.className="btn btn-light d-block text-start mb-1"
+  li.innerText= el
+  li.style="list-style:none";
   filtromarca.append(li)
 });
 
@@ -116,15 +189,12 @@ function filtrarpormarca(filtro) {
 })
   return filtrado
 }
-
-filtrarpormarca()
-
 filtromarca.addEventListener("click",(e)=>{
-  let buscar =e.target.className;
+  let buscar =e.target.id;
   let filtro= filtrarpormarca(buscar)
+  console.log(buscar);
   crearhtml(filtro)
 })
-
 // --------------------------------
 
 

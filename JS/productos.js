@@ -91,7 +91,7 @@ const bike = [
           id:12,
           brand:"SPL",
           model:"Rodado 29",
-          price: 150000,
+          price: 250000,
           img: "./assets/img/trekxcaliber.jpg",
           amount:1
         },
@@ -127,7 +127,5 @@ const bike = [
           img:"./assets/img/Cannondale-Quick-6-R700.jpg",
           amount:1
         }
-
-
 ]
 
