@@ -16,10 +16,10 @@ function crearhtml(bike){
   bike.forEach(product => {
       const {img,brand,model,price}=product
       content= document.createElement("div");
-      content.className="card d-inline-block mt-3 me-3 mb-3 border border-2 border-top-0"
+      content.className="card d-inline-block mt-3 me-3 mb-3 border"
       content.innerHTML=`
                               <img class="card-img-top" src="${img}">    
-                              <h4 class="card-title bg-dark text-light shadow">${brand}</h3>
+                              <h4 class="card-title bg-dark text-light">${brand}</h3>
                               <h6 class ="card-text">${model}</h5>
                               <p class="card-text fs-5 text-success"><strong>$ ${price}</strong></p>
                               `

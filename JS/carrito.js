@@ -99,6 +99,7 @@ btnfinalizar.addEventListener("click",()=>{
     title: 'BIKESHOP',
     text: "Desea finalizar la Compra?",
     icon: 'warning',
+    className: "red-bg",
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',

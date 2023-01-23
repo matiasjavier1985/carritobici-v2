@@ -1,5 +1,4 @@
 
-
 function singup(e) {
     event.preventDefault();
     const username = document.getElementById("user").value
@@ -9,7 +8,6 @@ function singup(e) {
     let json = JSON.stringify(user);
     localStorage.setItem(username, json)
 }
-
 function login(e){
     event.preventDefault();
     const username = document.getElementById("user").value
