@@ -40,7 +40,7 @@ const pintarCarrito= ()=>{
     let eliminar = document.createElement("div")
     eliminar.innerHTML=`Eliminar ${product.brand}-${product.model}`
     eliminar.style.cursor="pointer"
-    eliminar.className="btn btn-danger d-flex flex-row-reverse"
+    eliminar.className="btn btn-outline-danger d-flex flex-row-reverse"
     modalcontainer.append(eliminar)
     eliminar.addEventListener("click", eliminarproducto)
 

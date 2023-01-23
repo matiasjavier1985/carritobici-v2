@@ -1,6 +1,8 @@
-/* .fondo-bici{
-    background:url(./assets/img/wallpaper01.jpg)
-} */
+ .fondo-bici{
+    
+    background:url(./assets/img/7217633.jpg);
+    object-fit: cover;
+ }
 /* .fondo-bici{
     background: #141E30; 
 background: -webkit-linear-gradient(to right, #243B55, #141E30);
@@ -8,9 +10,9 @@ background: linear-gradient(to right, #243B55, #141E30);
 
 } */
 .card:hover{
-    background: linear-gradient(to bottom, #c8c8c8, #ffffff); 
-    border: 1px solid lightblue;
-    box-shadow:1px 1px 10px 5px lightblue;
+    /* background: linear-gradient(to bottom, rgb(33, 214, 255) 50%, #ffffff);  */
+   
+    box-shadow:1px 1px 10px 5px rgba(79, 79, 79, 0.425);
      
 }
 .fondo-02{
