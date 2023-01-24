@@ -33,7 +33,7 @@ fetch('./data/bike.json')
 // console.log(bike);
 // let preciomayor = bike.map((precio)=>precio.price)
 // let preciomenor = bike.map((precio)=>precio.price)
-// preciomayor.sort((a,b)=>{return a - b})
+// 
 // preciomenor.sort((a,b)=>{return b - a})   
 // console.log(preciomayor);
 // console.log(preciomenor);

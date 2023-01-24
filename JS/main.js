@@ -11,11 +11,13 @@ const preciomenormayor= document.getElementById("preciomenormayor")
 const az= document.getElementById("a-z")
 const za= document.getElementById("z-a")
 
-fetch('./data/bike.json')
+const url= ('./data/bike.json')
+  fetch(url)
   .then(response => response.json())
-  .then(data => data.forEach(bike => {
-     console.log(bike);
-  }));
+  .then(data =>(data));
+
+
+
 function crearhtml(bike){
   shopcontent.innerHTML=``
   bike.forEach(product => {
@@ -67,11 +69,12 @@ function crearhtml(bike){
       })
   });
 }
-crearhtml(bike)
+//crearhtml(bike)
 
 // -------filtrar por:--------------------
 
 let precios = bike.filter((precio)=>precio.price)
+
 let letras = bike.filter((letra)=>letra.brand)
 
 function filtrarbike(filtro) {
@@ -218,5 +221,3 @@ selectbrand.addEventListener("change", () => {
 const guardarLS = ()=>{
   localStorage.setItem("carrito", JSON.stringify(carrito))
 }
-
-
