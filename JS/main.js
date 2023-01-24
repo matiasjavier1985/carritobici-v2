@@ -11,6 +11,11 @@ const preciomenormayor= document.getElementById("preciomenormayor")
 const az= document.getElementById("a-z")
 const za= document.getElementById("z-a")
 
+fetch('./data/bike.json')
+  .then(response => response.json())
+  .then(data => data.forEach(bike => {
+     console.log(bike);
+  }));
 function crearhtml(bike){
   shopcontent.innerHTML=``
   bike.forEach(product => {
@@ -18,7 +23,7 @@ function crearhtml(bike){
       content= document.createElement("div");
       content.className="card d-inline-block mt-3 me-3 mb-3 border"
       content.innerHTML=`
-                              <img class="card-img-top" src="${img}">    
+                              <img class="card-img-top" src="${img}">
                               <h4 class="card-title bg-dark text-light">${brand}</h3>
                               <h6 class ="card-text">${model}</h5>
                               <p class="card-text fs-5 text-success"><strong>$ ${price}</strong></p>
@@ -29,7 +34,7 @@ function crearhtml(bike){
       shopcontent.appendChild(content)
       content.appendChild(comprar)
 
-  comprar.addEventListener("click",()=>{ 
+  comprar.addEventListener("click",()=>{
     const Toast = Swal.mixin({
       toast: true,
       position: 'bottom-end',
@@ -40,7 +45,7 @@ function crearhtml(bike){
         toast.addEventListener('mouseenter', Swal.stopTimer)
         toast.addEventListener('mouseleave', Swal.resumeTimer)
       }
-    }) 
+    })
     Toast.fire({
       icon: 'success',
       title: 'Producto agregado'
@@ -54,12 +59,12 @@ function crearhtml(bike){
           });
         }else{
         const{id,brand,model,price,amount,img}= product
-        carrito.push({id:id,brand:brand,model:model,price:price,amount:amount,img:img});    
+        carrito.push({id:id,brand:brand,model:model,price:price,amount:amount,img:img});
       }
-      totalgastado() 
+      totalgastado()
       guardarLS()
       amountcarrito()
-      }) 
+      })
   });
 }
 crearhtml(bike)
@@ -140,28 +145,20 @@ za.addEventListener("click",()=>{
   crearhtml(filtro)
 })
 
+  // setTimeout(() => {
+  //   swal.fire({
+  //     imageUrl: './assets/img/trekxcaliber.jpg',
+  //     title: "OFERTAS",
+  //     text: "15% de descuento en marcas TREK",
 
+  //   });
 
+  // }, 3000);
 
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-//-----------FIN precio mayor
 bici=[]
 for (let i = 0; i < bike.length; i++) {
     const element = bike[i];
-    bici.push(element.brand)  
+    bici.push(element.brand)
 }
 const filtradobici = bici.filter((valor, indice) => {
     return bici.indexOf(valor) === indice;
@@ -196,9 +193,6 @@ filtromarca.addEventListener("click",(e)=>{
   console.log(buscar);
   crearhtml(filtro)
 })
-// --------------------------------
-
-
 
 function selectbike(filtro) {
   let filtrado = bike.filter((bici) => {
@@ -221,7 +215,6 @@ selectbrand.addEventListener("change", () => {
 });
 
 //LocalStorage
-//setitem
 const guardarLS = ()=>{
   localStorage.setItem("carrito", JSON.stringify(carrito))
 }

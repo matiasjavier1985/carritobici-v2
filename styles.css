@@ -23,3 +23,9 @@ background: linear-gradient(to right, #243B55, #141E30);
     background-color: rgba(63,255,106,0.69);
     border: 3px solid white;
   }
+.zindex{
+    position: fixed;
+    right: 1px;
+    bottom: 10px;
+    z-index: 99;
+}

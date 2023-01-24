@@ -1,7 +1,7 @@
 
-// ---------VARIABLES------------
+// ----------VARIABLES------------
 const btnfinalizar= document.getElementById("btnfinalizarcompra")
-// ----------FUNCIONES-----------
+// ----------FUNCIONES------------
 const pintarCarrito= ()=>{
     modalbody.innerHTML=""
     carrito.forEach((product)=>{
@@ -92,7 +92,7 @@ const totalgastado=()=>{
   localStorage.setItem("moneygastado",JSON.stringify(moneygastado))
   totalmoney.innerText = `$ ${localStorage.getItem("moneygastado")}`
 }
-// ---Eventos---------
+// ----------Eventos-------------
 vercarrito.addEventListener("click",pintarCarrito)
 btnfinalizar.addEventListener("click",()=>{
   Swal.fire({
