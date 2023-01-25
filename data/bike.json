@@ -36,7 +36,7 @@
         "brand":"SPL",
         "model":"Rodado 29",
         "price": 150000,
-        "img": "./assets/img/trekxcaliber.jpg",
+        "img": "./assets/img/Slp-100-21vshimano.jpg",
         "amount":1
       },
       {
@@ -90,9 +90,9 @@
         {
           "id":12,
           "brand":"SPL",
-          "model":"Rodado 29",
+          "model":"Slp 5 Pro R29",
           "price": 250000,
-          "img": "./assets/img/trekxcaliber.jpg",
+          "img": "./assets/img/Slp-5-Pro-R29.jpg",
           "amount":1
         },
         {

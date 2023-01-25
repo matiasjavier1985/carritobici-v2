@@ -14,9 +14,7 @@ const za= document.getElementById("z-a")
 const url= ('./data/bike.json')
   fetch(url)
   .then(response => response.json())
-  .then(data =>(data));
-
-
+  .then(data=>crearhtml(data));
 
 function crearhtml(bike){
   shopcontent.innerHTML=``
@@ -167,7 +165,6 @@ const filtradobici = bici.filter((valor, indice) => {
     return bici.indexOf(valor) === indice;
   }
 );
-// ------------------------------------------------------
 const filtromarca = document.getElementById("filtromarca")
 const filtrobrands = bike.map((el)=>el.brand);
 
