@@ -10,11 +10,54 @@ const preciomayormenor= document.getElementById("preciomayormenor")
 const preciomenormayor= document.getElementById("preciomenormayor")
 const az= document.getElementById("a-z")
 const za= document.getElementById("z-a")
+const filtromarca = document.getElementById("filtromarca")
 
-const url= ('./data/bike.json')
-  fetch(url)
-  .then(response => response.json())
-  .then(data=>crearhtml(data));
+async function getdata(){
+    let res= await fetch("./data/bike.json")
+    let bike =await res.json()
+    crearhtml (bike);
+    filtrar(bike)
+    let precios = bike.filter((precio)=>precio.price)
+    let letras = bike.filter((letra)=>letra.brand)
+
+    searchbike.addEventListener("input",()=>{
+      let filtro= filtrarbike(searchbike.value,bike)
+      crearhtml(filtro)
+    });
+    btnborrarselect.addEventListener("click",()=>{
+      crearhtml(bike)
+    })
+    preciomayormenor.addEventListener("click",()=>{
+     filtro = preciomayor(precios)
+     console.log(filtro);
+     crearhtml(filtro)
+    })
+    preciomenormayor.addEventListener("click",()=>{
+      filtro = preciomenor(precios)
+      crearhtml(filtro)
+    })
+    az.addEventListener("click",()=>{
+      filtro = ayz(letras)
+      crearhtml(filtro)
+    })
+    za.addEventListener("click",()=>{
+      filtro = zya(letras)
+      crearhtml(filtro)
+    })
+    filtromarca.addEventListener("click",(e)=>{
+      let buscar =e.target.id;
+      let filtro= selectbike(buscar,bike)
+      crearhtml(filtro)
+    })
+    selectbrand.addEventListener("change", () => {
+      let opcion = selectbrand.options[selectbrand.selectedIndex].value;
+      console.log(opcion);
+      let filtro= selectbike(opcion,bike)
+      crearhtml(filtro)
+    });
+
+}
+getdata();
 
 function crearhtml(bike){
   shopcontent.innerHTML=``
@@ -66,22 +109,37 @@ function crearhtml(bike){
       amountcarrito()
       })
   });
+
 }
-//crearhtml(bike)
+function filtrar(bike){
+  const bici = bike.map((el)=>el.brand);
 
-// -------filtrar por:--------------------
-
-let precios = bike.filter((precio)=>precio.price)
-
-let letras = bike.filter((letra)=>letra.brand)
-
-function filtrarbike(filtro) {
+  const filtradobici = bici.filter((valor, indice) => {
+    return bici.indexOf(valor) === indice;
+  }
+  );
+  filtradobici.forEach((bicis) => {
+    let option = document.createElement("option");
+      option.value =bicis;
+      option.innerText =bicis;
+      selectbrand.appendChild(option);
+  });
+  filtradobici.forEach(el => {
+    let li= document.createElement("li")
+    li.setAttribute("id", el);
+    li.className="btn btn-light d-block text-start mb-1"
+    li.innerText= el
+    li.style="list-style:none";
+    filtromarca.append(li)
+  });
+}
+function filtrarbike(filtro,bike) {
   let filtrado = bike.filter((bici) => {
     return bici.brand.includes(filtro.toUpperCase());
   });
   return filtrado;
 }
-function preciomayor() {
+function preciomayor(precios) {
   precios.sort((a,b)=>{
     if (a.price==b.price){
        return 0
@@ -91,7 +149,7 @@ function preciomayor() {
     })
   return precios
 }
-function preciomenor() {
+function preciomenor(precios) {
     precios.sort((a,b)=>{
       if (a.price==b.price){
          return 0
@@ -101,7 +159,7 @@ function preciomenor() {
       })
     return precios
 }
-function ayz() {
+function ayz(letras) {
   letras.sort((a,b)=>{
     if (a.brand==b.brand){
         return 0
@@ -111,7 +169,7 @@ function ayz() {
     })
   return letras
 }
-function zya() {
+function zya(letras) {
   letras.sort((a,b)=>{
     if (a.brand==b.brand){
         return 0
@@ -121,31 +179,12 @@ function zya() {
     })
   return letras
 }
-
-searchbike.addEventListener("input",()=>{
-  let filtro= filtrarbike(searchbike.value)
-  crearhtml(filtro)
-});
-btnborrarselect.addEventListener("click",()=>{
-  crearhtml(bike)
-})
-preciomayormenor.addEventListener("click",()=>{
-  filtro = preciomayor(preciomayormenor)
-  crearhtml(filtro)
-})
-preciomenormayor.addEventListener("click",()=>{
-    filtro = preciomenor(preciomenormayor)
-    crearhtml(filtro)
-})
-az.addEventListener("click",()=>{
-  filtro = ayz(az)
-  crearhtml(filtro)
-})
-za.addEventListener("click",()=>{
-  filtro = zya(za)
-  crearhtml(filtro)
-})
-
+function selectbike(filtro,bike) {
+  let filtrado = bike.filter((bici) => {
+    return bici.brand.includes(filtro);
+  });
+  return filtrado;
+}
   // setTimeout(() => {
   //   swal.fire({
   //     imageUrl: './assets/img/trekxcaliber.jpg',
@@ -155,64 +194,6 @@ za.addEventListener("click",()=>{
   //   });
 
   // }, 3000);
-
-bici=[]
-for (let i = 0; i < bike.length; i++) {
-    const element = bike[i];
-    bici.push(element.brand)
-}
-const filtradobici = bici.filter((valor, indice) => {
-    return bici.indexOf(valor) === indice;
-  }
-);
-const filtromarca = document.getElementById("filtromarca")
-const filtrobrands = bike.map((el)=>el.brand);
-
-const filtradobicis = filtrobrands.filter((valor, indice) => {
-  return bici.indexOf(valor) === indice;
-});
-
-filtradobicis.forEach(el => {
-  let li= document.createElement("li")
-  li.setAttribute("id", el);
-  li.className="btn btn-light d-block text-start mb-1"
-  li.innerText= el
-  li.style="list-style:none";
-  filtromarca.append(li)
-});
-
-function filtrarpormarca(filtro) {
-  let filtrado= bike.filter((cleta)=>{
-  return cleta.brand.includes(filtro);
-})
-  return filtrado
-}
-filtromarca.addEventListener("click",(e)=>{
-  let buscar =e.target.id;
-  let filtro= filtrarpormarca(buscar)
-  console.log(buscar);
-  crearhtml(filtro)
-})
-
-function selectbike(filtro) {
-  let filtrado = bike.filter((bici) => {
-    return bici.brand.includes(filtro);
-  });
-  return filtrado;
-}
-filtradobici.forEach((bicis) => {
-  let option = document.createElement("option");
-    option.value =bicis;
-    option.innerText =bicis;
-    selectbrand.appendChild(option);
-});
-
-selectbrand.addEventListener("change", () => {
-  let opcion = selectbrand.options[selectbrand.selectedIndex].value;
-  let filtro= selectbike(opcion)
-  crearhtml(filtro)
-
-});
 
 //LocalStorage
 const guardarLS = ()=>{
