@@ -60,7 +60,9 @@ async function getdata(){
 getdata();
 
 function crearhtml(bike){
+  
   shopcontent.innerHTML=``
+ 
   bike.forEach(product => {
       const {img,brand,model,price}=product
       content= document.createElement("div");
@@ -73,11 +75,13 @@ function crearhtml(bike){
                               `
       let comprar = document.createElement("div");
       comprar.innerText="AGREGAR CARRITO";
-      comprar.className="btn btn-outline-success m-1 shadow"
+      comprar.className="btn btn-success m-1 shadow"
       shopcontent.appendChild(content)
       content.appendChild(comprar)
 
   comprar.addEventListener("click",()=>{
+
+
     const Toast = Swal.mixin({
       toast: true,
       position: 'bottom-end',

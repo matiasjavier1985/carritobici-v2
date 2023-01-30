@@ -1,7 +1,7 @@
 
 // ----------VARIABLES------------
 const btnfinalizar= document.getElementById("btnfinalizarcompra")
-btnfinalizar.style.display = 'none'
+
 // ----------FUNCIONES------------
 const pintarCarrito= ()=>{ 
     modalbody.innerHTML=""
@@ -120,7 +120,6 @@ btnfinalizar.addEventListener("click",()=>{
     }
   }) 
 })
-
 amountcarrito()
 
 
