@@ -59,10 +59,8 @@ async function getdata(){
 }
 getdata();
 
-function crearhtml(bike){
-  
+function crearhtml(bike){ 
   shopcontent.innerHTML=``
- 
   bike.forEach(product => {
       const {img,brand,model,price}=product
       content= document.createElement("div");
@@ -80,8 +78,6 @@ function crearhtml(bike){
       content.appendChild(comprar)
 
   comprar.addEventListener("click",()=>{
-
-
     const Toast = Swal.mixin({
       toast: true,
       position: 'bottom-end',
@@ -113,7 +109,6 @@ function crearhtml(bike){
       amountcarrito()
       })
   });
-
 }
 function filtrar(bike){
   const bici = bike.map((el)=>el.brand);

@@ -1,13 +1,13 @@
 
 // ----------VARIABLES------------
-const btnfinalizar= document.getElementById("btnfinalizarcompra")
+const btnfinalizarcompra= document.getElementById("btnfinalizarcompra")
 
 // ----------FUNCIONES------------
 const pintarCarrito= ()=>{ 
     modalbody.innerHTML=""
     carrito.forEach((product)=>{
     let modalbody = document.createElement("div");
-      modalbody.className="modal-body"
+      modalbody.className="modal-body border"
       modalbody.innerHTML=`
             <img class="img-thumbnail w-25 shadow" src="${product.img}">   
             <h6 class="ps-1 d-inline-block">${product.brand}-${product.model}</h6>
@@ -28,7 +28,7 @@ const pintarCarrito= ()=>{
       totalgastado()
       pintarCarrito()
     })
-
+     
     let sumar = modalbody.querySelector(".sumarproduct")
     sumar.addEventListener("click",()=>{
       product.amount++
@@ -36,11 +36,13 @@ const pintarCarrito= ()=>{
       totalgastado()
       pintarCarrito()
     })
-    let eliminar = document.createElement("div")
-    eliminar.innerHTML=`Eliminar ${product.brand}-${product.model}`
+
+    let eliminar =document.createElement("div")
+    eliminar.innerHTML=`<button class="btn btn-danger">Eliminar ${product.brand}-${product.model}</button>`
     eliminar.style.cursor="pointer"
-    eliminar.className="btn btn-outline-danger d-flex flex-row-reverse"
-    modalcontainer.append(eliminar)
+    eliminar.className="d-flex flex-row-reverse"
+    
+    modalbody.append(eliminar)
     eliminar.addEventListener("click", eliminarproducto)
 
   });
@@ -93,7 +95,7 @@ const totalgastado=()=>{
 }
 // ----------Eventos-------------
 vercarrito.addEventListener("click",pintarCarrito)
-btnfinalizar.addEventListener("click",()=>{
+btnfinalizarcompra.addEventListener("click",()=>{
   Swal.fire({
     title: 'BIKESHOP',
     text: "Desea finalizar la Compra?",
@@ -111,7 +113,6 @@ btnfinalizar.addEventListener("click",()=>{
     modalbody.innerHTML="CARRITO VACIO"
       Swal.fire({
         icon:"success",
-      
         text: "Compra exitosa?",
       })
       setTimeout(function(){
@@ -119,6 +120,7 @@ btnfinalizar.addEventListener("click",()=>{
      }, 2000);
     }
   }) 
+  console.log("ok");
 })
 amountcarrito()
 
