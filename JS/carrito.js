@@ -1,8 +1,9 @@
 
 // ----------VARIABLES------------
 const btnfinalizar= document.getElementById("btnfinalizarcompra")
+btnfinalizar.style.display = 'none'
 // ----------FUNCIONES------------
-const pintarCarrito= ()=>{
+const pintarCarrito= ()=>{ 
     modalbody.innerHTML=""
     carrito.forEach((product)=>{
     let modalbody = document.createElement("div");
@@ -18,8 +19,7 @@ const pintarCarrito= ()=>{
             `
     modalcontainer.append(modalbody)
 
-    let restar = modalbody.querySelector(".restarproduct")
-  
+    let restar = modalbody.querySelector(".restarproduct") 
     restar.addEventListener("click",()=>{
       if(product.amount !==1){
          product.amount--
@@ -28,15 +28,14 @@ const pintarCarrito= ()=>{
       totalgastado()
       pintarCarrito()
     })
-    let sumar = modalbody.querySelector(".sumarproduct")
 
+    let sumar = modalbody.querySelector(".sumarproduct")
     sumar.addEventListener("click",()=>{
       product.amount++
       guardarLS()
       totalgastado()
       pintarCarrito()
     })
-
     let eliminar = document.createElement("div")
     eliminar.innerHTML=`Eliminar ${product.brand}-${product.model}`
     eliminar.style.cursor="pointer"
