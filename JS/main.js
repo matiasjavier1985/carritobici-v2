@@ -64,16 +64,16 @@ function crearhtml(bike){
   bike.forEach(product => {
       const {img,brand,model,price}=product
       content= document.createElement("div");
-      content.className="card d-inline-block mt-3 me-3 mb-3 border"
+      content.className="card d-inline-block mt-2 me-3 mb-3 border"
       content.innerHTML=`
                               <img class="card-img-top" src="${img}">
-                              <h4 class="card-title bg-dark text-light">${brand}</h3>
+                              <h4 class="card-title bg-dark text-light">${brand} <i class="fa-solid fa-tags fa-xs"></i></h3>
                               <h6 class ="card-text">${model}</h5>
                               <p class="card-text fs-5 text-success"><strong>$ ${price}</strong></p>
                               `
       let comprar = document.createElement("div");
-      comprar.innerText="AGREGAR CARRITO";
-      comprar.className="btn btn-success m-1 shadow"
+      comprar.innerHTML=`AGREGAR CARRITO <i class="fa-solid fa-bag-shopping"></i>`;
+      comprar.className="btn btn-outline-primary m-1 shadow"
       shopcontent.appendChild(content)
       content.appendChild(comprar)
 

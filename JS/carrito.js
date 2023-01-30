@@ -11,7 +11,7 @@ const pintarCarrito= ()=>{
       modalbody.innerHTML=`
             <img class="img-thumbnail w-25 shadow" src="${product.img}">   
             <h6 class="ps-1 d-inline-block">${product.brand}-${product.model}</h6>
-            <h6 class="d-block">Precio:${product.price}</h6>
+            <h6 class="d-block">Precio $:${product.price}</h6>
             <button class="btn btn-body border rounded p-1 d-inline-block restarproduct">➖</button>
             <p class="border rounded p-2 d-inline-block">Cant: ${product.amount}</p>
             <button class="btn btn-body border rounded p-1 d-inline-block sumarproduct">➕</button>
@@ -38,7 +38,7 @@ const pintarCarrito= ()=>{
     })
 
     let eliminar =document.createElement("div")
-    eliminar.innerHTML=`<button class="btn btn-danger">Eliminar ${product.brand}-${product.model}</button>`
+    eliminar.innerHTML=`<button class="btn">❌ Eliminar Producto</button>`
     eliminar.style.cursor="pointer"
     eliminar.className="d-flex flex-row-reverse"
     

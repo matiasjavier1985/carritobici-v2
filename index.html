@@ -4,6 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>BIKESHOP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,800;1,400;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,900;1,100;1,300;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="shortcut icon" href="./assets/img/android-icon-48x48.png" type="image/x-icon">
@@ -29,9 +32,7 @@
               </div>
               <div class="col-lg col-md col-xs-6 text-center">
                 <button type="button" id="vercarrito" class="btn btn-body d-inline-block" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
-                      <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-                  </svg>
+                  <i class="fa-solid fa-xl fa-cart-shopping"></i>
                   <span class="" id="cantcarrito"></span> 
                   <span class="badge text-bg-warning"id="totalmoney"></span>                              
                 </button>
@@ -51,27 +52,27 @@
           </div>
           
           <div class="modal-footer" id="totalcompra">
-            <button type="button" class="btn btn-success" id="btnfinalizarcompra">Finalizar Compra</button>
+            <button type="button" class="btn btn-dark" id="btnfinalizarcompra">Finalizar Compra</button>
             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>  
           </div>
         </div>
       </div>
   </div>
   <section>
-      <div class="container-fluid text-center mb-2">
+      <div class="container-fluid text-center mb-2  shadow">
         <div class="row">
           <div class="col-lg col-md col-xs-6 text-center justify-content-around">           
-              <button type="button" class="btn btn-outline-secondary m-1">BICICLETAS</button>
-              <button type="button" class="btn btn-outline-secondary m-1">ACCESORIOS</button>
-              <button type="button" class="btn btn-outline-secondary m-1">COMPONENTES</button>
-              <button type="button" class="btn btn-outline-secondary m-1">INDUMENTARIA</button>
-              <button type="button" class="btn btn-outline-secondary m-1">OFERTAS</button>           
+              <button type="button" class="btn btn-outline-primary m-1">BICICLETAS</button>
+              <button type="button" class="btn btn-outline-primary m-1">ACCESORIOS</button>
+              <button type="button" class="btn btn-outline-primary m-1">COMPONENTES</button>
+              <button type="button" class="btn btn-outline-primary m-1">INDUMENTARIA</button>
+              <button type="button" class="btn btn-outline-primary m-1">OFERTAS</button>           
           </div>
         </div>
       </div>
   </section>
   <section>
-    <div class="container-fluid mb-2">
+    <div class="container-fluid mb-2 d-flex  d-none d-sm-block">
       <div class="row">
         <div class="col">
           <div id="carouselExampleCaptions" class="carousel slide">
@@ -132,50 +133,47 @@
         </div>
     </div>
 </div>
-  <!-- <section>
-      <div class="container-fluid">
-          <div class="row">
-              <div class="col d-flex mb-2 shadow">
-                <p><strong>Filtrar por: </strong></p>
-                <form class="d-flex mb-2 ms-1">
-                  <select class="form-select" aria-label="Default select example" id="selectbrand">
-                    <option class="text-center" selected>MARCA</option>
-                    </select>
-                    <button type="reset" class="btn btn-body" id="borrarselect">❌</button> 
-                </form> 
-
-              </div>           
-          </div>
+ <section>
+  <div class="container-fluid ">
+    <div class="row">
+      <div class="col-xs d-flex justify-content-start  d-md-none d-inline ">
+        <form class=" mb-2 ms-1">
+          <select class="form-select" aria-label="Default select example" id="selectbrand">
+            <option class="text-center" selected>Filtrar por: <strong>Marca</strong></option>
+            </select>
+            
+        </form> 
       </div>
-  </section> -->
+        <div class="col d-flex justify-content-start ">
+          <div class="dropdown">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Filtrar por:⬆️⬇️
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" id="preciomayormenor">Precio Mayor a Menor</a></li>
+              <li><a class="dropdown-item" id="preciomenormayor">Precio Menor a Mayor</a></li>
+              <li><a class="dropdown-item" id="a-z">Marca: A-Z</a></li>
+              <li><a class="dropdown-item" id="z-a">Marca: Z-A</a></li>
+            </ul>
+            <button type="reset" class="btn btn-body" id="borrarselect"></button> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ </section>
   <section>
       <div class="container-fluid text-center "> 
         <div class="row">
-            <div class="col col-md-2 d-none pr-0 d-md-block visible-when-content-ready">
-              <p><strong>Filtrar por: </strong></p>
-              <form class="d-flex mb-2 ms-1">
-                <select class="form-select" aria-label="Default select example" id="selectbrand">
-                  <option class="text-center" selected>MARCA</option>
-                  </select>
-                  <button type="reset" class="btn btn-body" id="borrarselect">❌</button> 
-              </form> 
+            <div class="col col-md-2 d-none pr-0 d-lg-block visible-when-content-ready">
+              
               <p class="fs-5 text-start">Por marca:</p>
               <ul class="text-start" id="filtromarca">               
               </ul>
-              <div class="dropdown">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                 Filtrar por:⬆️⬇️
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" id="preciomayormenor">Precio Mayor a Menor</a></li>
-                  <li><a class="dropdown-item" id="preciomenormayor">Precio Menor a Mayor</a></li>
-                  <li><a class="dropdown-item" id="a-z">Marca: A-Z</a></li>
-                  <li><a class="dropdown-item" id="z-a">Marca: Z-A</a></li>
-                </ul>
-              </div>
+              
             </div>
 
-            <div class="col fondo-bici"> 
+            <div class="col bg-light"> 
                  <div id="shopcontent"></div>
             </div>
         </div>
